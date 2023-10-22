@@ -1,9 +1,11 @@
+import './global.css'
+
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 
 import { FunctionComponent, PropsWithChildren } from 'react'
-import GlobalStyle from '@/common/GlobalStyle'
-import Layout from '@/infrastructure/Layout'
+import styles from './layout.module.sass'
+import Topbar from '@/infrastructure/Topbar'
 
 const poppins = Poppins({ weight: '400', subsets: ['latin-ext'] })
 
@@ -14,11 +16,13 @@ export const metadata: Metadata = {
 
 const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => (
   <html lang="pl">
-  <GlobalStyle />
     <body className={poppins.className}>
-      <Layout>
+    <main className={styles.wrapper}>
+      <Topbar />
+      <div className={styles.content}>
         {children}
-      </Layout>
+      </div>
+    </main>
     </body>
   </html>
 )

@@ -1,14 +1,21 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-type Props = {
-  isLoginPage: boolean
+const UserNotLoggedIn: FunctionComponent = () => {
+  const pathname = usePathname()
+  const isLoginPage = pathname === '/login'
+  return (
+    <>
+      {isLoginPage ? (
+        <Link href="/">wróć</Link>
+      ) : (
+        <Link href="/login">zaloguj</Link>
+      )}
+    </>
+  )
 }
-
-const UserNotLoggedIn: FunctionComponent<Props> = ({ isLoginPage }) => (
-  <>
-    {isLoginPage ? <Link href="/">wróć</Link> : <Link href="/login">zaloguj</Link>}
-  </>
-)
 
 export default UserNotLoggedIn
