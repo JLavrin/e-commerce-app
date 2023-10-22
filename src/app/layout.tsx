@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => (
   <html lang="pl">
+  <GlobalStyle />
     <body className={poppins.className}>
-      <GlobalStyle />
       <Layout>
         {children}
       </Layout>

@@ -1,9 +1,9 @@
-const AppleIdPage = () => {
+const MetaPage = () => {
   return (
     <div>
-      <h1>Logowanie AppleId w przygotowaniu</h1>
+      <h1>Logowanie Meta w przygotowaniu</h1>
     </div>
   )
 }
 
-export default AppleIdPage
+export default MetaPage

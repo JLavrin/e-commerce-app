@@ -1,9 +1,9 @@
-const AppleIdPage = () => {
+const GooglePage = () => {
   return (
     <div>
-      <h1>Logowanie AppleId w przygotowaniu</h1>
+      <h1>Logowanie GooglePage w przygotowaniu</h1>
     </div>
   )
 }
 
-export default AppleIdPage
+export default GooglePage

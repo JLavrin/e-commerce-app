@@ -4,6 +4,7 @@ import { FunctionComponent, useState } from 'react'
 import styled from 'styled-components'
 import { usePathname } from 'next/navigation'
 import UserNotLoggedIn from '@/infrastructure/Topbar/components/UserNotLoggedIn'
+import Link from 'next/link'
 
 const Topbar: FunctionComponent = () => {
   const pathname = usePathname()
@@ -13,7 +14,9 @@ const Topbar: FunctionComponent = () => {
   return (
     <StyledTopbar>
       <div>
-        <h2>Szop_App</h2>
+        <Link href="/">
+          <h2>Szop_App</h2>
+        </Link>
         <UserNotLoggedIn isLoginPage={isLoginPage} />
       </div>
     </StyledTopbar>
@@ -26,6 +29,8 @@ const StyledTopbar = styled.nav`
   height: 60px;
   border-bottom: 1px solid #f5f5f5;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0,0,0,.15);
   
