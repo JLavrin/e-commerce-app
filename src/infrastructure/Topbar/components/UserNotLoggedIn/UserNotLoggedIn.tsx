@@ -8,13 +8,13 @@ const UserNotLoggedIn: FunctionComponent = () => {
   const pathname = usePathname()
   const isLoginPage = pathname === '/login'
   return (
-    <>
+    <div>
       {isLoginPage ? (
         <Link href="/">wróć</Link>
       ) : (
         <Link href="/login">zaloguj</Link>
       )}
-    </>
+    </div>
   )
 }
 

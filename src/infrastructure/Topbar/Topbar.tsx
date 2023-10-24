@@ -7,18 +7,18 @@ import Hamburger from "@/infrastructure/Topbar/components/Hamburger";
 const Topbar: FunctionComponent = () => {
   const categories = [
     { name: 'Lavrin_Bikes', url: '/' },
-    { name: 'Rowery', url: '/rowery' },
-    { name: 'Części', url: '/czesci' },
-    { name: 'Odzież', url: '/odziez' },
-    { name: 'Akcesoria', url: '/akcesoria' },
-    { name: 'Serwis', url: '/serwis' },
-    { name: 'Kontakt', url: '/kontakt' }
+    { name: 'Rowery', url: '/sklep/rowery' },
+    { name: 'Części', url: '/sklep/czesci' },
+    { name: 'Odzież', url: '/sklep/odziez' },
+    { name: 'Akcesoria', url: '/sklep/akcesoria' },
+    { name: 'Serwis', url: '/sklep/serwis' },
+    { name: 'Kontakt', url: '/sklep/kontakt' }
   ] as const
 
   return (
     <div className={styles.topbar}>
       <div>
-        <Hamburger />
+        <Hamburger categories={categories} />
         {categories.map(({ name, url }) => (
           <Link key={url} href={url}>
             <h2>{name}</h2>

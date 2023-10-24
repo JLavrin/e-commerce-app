@@ -8,6 +8,7 @@
   justify-content: center
   background-color: #fff
   box-shadow: 0 0 10px rgba(0,0,0,0.15)
+  z-index: 1000
 
   > div
     width: 100%
@@ -16,6 +17,17 @@
     justify-content: space-between
     align-items: center
     max-width: 1200px
+
+    & > div:last-of-type
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 80px
+      padding: 5px
+      
+
+      &:hover
+        transform: scale(1.05)
 
   h2
     font-size: 1rem
@@ -36,8 +48,6 @@
       margin-right: 10px
       font-weight: 400
 
-  a:first-of-type,
-  a:last-of-type
+  a:first-of-type
     @media (max-width: 900px)
     display: block
-
