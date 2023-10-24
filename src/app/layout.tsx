@@ -7,7 +7,7 @@ import { FunctionComponent, PropsWithChildren } from 'react'
 import styles from './layout.module.sass'
 import Topbar from '@/infrastructure/Topbar'
 
-const poppins = Poppins({ weight: '400', subsets: ['latin-ext'] })
+const poppins = Poppins({ weight: ['300', '400'], subsets: ['latin-ext'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',

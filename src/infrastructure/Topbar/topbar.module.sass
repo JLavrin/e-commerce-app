@@ -19,9 +19,25 @@
 
   h2
     font-size: 1rem
+    font-weight: 300
     color: #333
 
   a
     color: #333
     text-decoration: none
     font-size: .9rem
+
+
+    @media (max-width: 900px)
+      display: none
+
+  a:first-of-type
+    > h2
+      margin-right: 10px
+      font-weight: 400
+
+  a:first-of-type,
+  a:last-of-type
+    @media (max-width: 900px)
+    display: block
+
