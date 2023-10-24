@@ -1,4 +1,4 @@
-import './global.css'
+import './global.sass'
 
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
@@ -7,7 +7,7 @@ import { FunctionComponent, PropsWithChildren } from 'react'
 import styles from './layout.module.sass'
 import Topbar from '@/infrastructure/Topbar'
 
-const poppins = Poppins({ weight: ['300', '400'], subsets: ['latin-ext'] })
+const poppins = Poppins({ weight: ['100', '300', '400', '700'], subsets: ['latin-ext'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,12 +17,12 @@ export const metadata: Metadata = {
 const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => (
   <html lang="pl">
     <body className={poppins.className}>
-    <main className={styles.wrapper}>
-      <Topbar />
-      <div className={styles.content}>
-        {children}
-      </div>
-    </main>
+      <main className={styles.wrapper}>
+        <Topbar />
+        <div className={styles.content}>
+          {children}
+        </div>
+      </main>
     </body>
   </html>
 )
