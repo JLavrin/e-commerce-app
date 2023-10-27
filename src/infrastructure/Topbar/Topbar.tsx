@@ -7,14 +7,15 @@ import styles from './topbar.module.sass'
 import Hamburger from "@/infrastructure/Topbar/components/Hamburger";
 import { usePathname } from 'next/navigation'
 
-const Topbar: FunctionComponent = () => {
+type Props = {
+  client?: string
+}
+
+const Topbar: FunctionComponent<Props> = ({ client }) => {
   const pathname = usePathname()
   const categories = [
     { name: 'Lavrin_Bikes', url: '/' },
     { name: 'Rowery', url: '/sklep/rowery' },
-    // { name: 'Części', url: '/sklep/czesci' },
-    // { name: 'Odzież', url: '/sklep/odziez' },
-    // { name: 'Akcesoria', url: '/sklep/akcesoria' },
     { name: 'Serwis', url: '/serwis' },
     { name: 'Kontakt', url: '/kontakt' }
   ] as const
@@ -36,7 +37,7 @@ const Topbar: FunctionComponent = () => {
             <h2 className={getCssClass(url)}>{name}</h2>
           </Link>
         ))}
-        <UserNotLoggedIn isLoginPage={pathname === '/login'} />
+        <UserNotLoggedIn isLoginPage={pathname === '/login'} client={client} />
       </div>
     </div>
   )
