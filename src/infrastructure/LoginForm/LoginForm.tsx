@@ -2,7 +2,7 @@
 
 import { FunctionComponent } from 'react'
 import styles from './login-form.module.sass'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useFormState } from 'react-dom'
 import { handleLoginSubmit } from '@/app/login/actions'
 
 const LoginForm: FunctionComponent = () => {

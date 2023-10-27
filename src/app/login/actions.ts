@@ -33,21 +33,23 @@ export async function handleLoginSubmit(prevState: any, payload: any) {
 
 
   let result = false
+  let user: any
 
   try {
     const client = await mongo
     const db = client.db('lavrin').collection('users')
 
-    const user = await db.findOne({
+    user = await db.findOne({
       email: parsed.email
     })
 
-    result = await bcrypt.compare(parsed.password, user?.password)
-
-    if (!result) {
+    if (user) {
+      result = await bcrypt.compare(parsed.password, user?.password)
+    } else {
       await db.insertOne({
         email: parsed.email,
-        password: bcrypt.hashSync(parsed.password, 10)
+        password: bcrypt.hashSync(parsed.password, 10),
+        cart: []
       })
     }
   } catch {
@@ -59,6 +61,7 @@ export async function handleLoginSubmit(prevState: any, payload: any) {
   }
 
   if (result) {
+    cookies().set('cart', JSON.stringify(user.cart))
     cookies().set('user', parsed.email)
     redirect('/sklep/rowery')
   }

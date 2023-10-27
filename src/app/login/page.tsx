@@ -13,13 +13,13 @@ const LoginPage = () => (
       <h2>Logowanie</h2>
       <p>Zaloguj się używając konta</p>
       <div className={styles.providers}>
-        <Link href="/login/apple-id">
+        <Link href="/login">
           <AppleIcon/>
         </Link>
-        <Link href="/login/google">
+        <Link href="/login">
           <GoogleIcon/>
         </Link>
-        <Link href="/login/meta">
+        <Link href="/login">
           <MetaIcon/>
         </Link>
       </div>

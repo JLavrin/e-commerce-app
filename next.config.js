@@ -4,7 +4,15 @@ const nextConfig = {
   sassOptions: {
     includePaths: [join(__dirname, 'styles')],
   },
-
+  redirects: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/sklep/rowery',
+        permanent: false,
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

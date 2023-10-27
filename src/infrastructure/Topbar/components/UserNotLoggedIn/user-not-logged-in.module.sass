@@ -1,0 +1,51 @@
+.wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+
+  svg
+    fill: #333333
+
+  &:hover
+    cursor: pointer
+
+    svg
+      fill: #5b5b5b
+
+.userPopper.closed
+    display: none
+
+.userPopper
+  display: flex
+  height: 200px
+  width: 300px
+  flex-direction: column
+  justify-content: center
+  position: absolute
+  top: 55px
+  right: 0
+  border-radius: 0 0 0.5rem 0.5rem
+  background-color: #fff
+
+  @media (max-width: 900px)
+    display: none
+
+  p
+    margin-top: 10px
+    padding: 0.5rem
+    font-size: 1rem
+    font-weight: 300
+    text-align: center
+    color: #333
+
+  a
+    margin-top: auto
+    margin-bottom: 20px
+    text-decoration: none
+    color: #333
+    text-align: center
+
+    &:hover
+      text-decoration: underline
+
+
