@@ -6,6 +6,7 @@ import CartIcon from '@/infrastructure/icons/CartIcon'
 import UserIcon from '@/infrastructure/icons/UserIcon'
 
 import styles from './user-not-logged-in.module.sass'
+import { usePathname } from 'next/navigation'
 
 type Props = {
   isLoginPage: boolean
@@ -16,36 +17,50 @@ type Props = {
 }
 
 const UserNotLoggedIn: FunctionComponent<Props> = ({ isLoginPage, client }) => {
-  const [isOpened, setIsOpen] = useState(false)
+  const [isUserOpened, setIsUserOpened] = useState(false)
+  const [isCartOpened, setIsCartOpened] = useState(false)
+  const pathname = usePathname()
 
-  if (client) {
+  const handleCartClick = () => {
+    setIsCartOpened(!isCartOpened)
+    setIsUserOpened(false)
+  }
+
+  const handleUserClick = () => {
+    setIsUserOpened(!isUserOpened)
+    setIsCartOpened(false)
+  }
+
+
+  if (!client) {
     return (
-      <>
-        <div className={styles.wrapper}>
-          <CartIcon />
-        </div>
-        <div className={styles.wrapper} onClick={() => setIsOpen(!isOpened)}>
-          <UserIcon />
-          <div className={`${styles.userPopper} ${!isOpened && styles.closed}`}>
-            <p>Zalogowano jako</p>
-            <p>{client.user}</p>
-            <Link href="/logout">
-              <h3>wyloguj</h3>
-            </Link>
-          </div>
-        </div>
-      </>
+      <div className={styles.wrapper}>
+        <Link
+          href="/login"
+          style={{ fontWeight: pathname === '/login' ? '700' : '300' }}
+        >
+          {pathname === '/login' ? 'logowanie' : 'zaloguj'}
+        </Link>
+      </div>
     )
   }
 
+
   return (
     <>
-      <Link
-        href="/login"
-        style={{ fontWeight: isLoginPage ? '700' : '300' }}
-      >
-        {isLoginPage ? 'logowanie' : 'zaloguj'}
-      </Link>
+      <div className={styles.wrapper}>
+        <CartIcon/>
+      </div>
+      <div className={styles.wrapper} onClick={handleUserClick}>
+        <UserIcon/>
+        <div className={`${styles.userPopper} ${!isUserOpened && styles.closed}`}>
+          <p>Zalogowano jako</p>
+          <p>{client.user}</p>
+          <Link href="/logout">
+            <h3>wyloguj</h3>
+          </Link>
+        </div>
+      </div>
     </>
   )
 }

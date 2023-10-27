@@ -64,5 +64,11 @@ export async function handleLoginSubmit(prevState: any, payload: any) {
     cookies().set('cart', JSON.stringify(user.cart))
     cookies().set('user', parsed.email)
     redirect('/sklep/rowery')
+  } else {
+    return {
+      email: '',
+      password: '',
+      message: 'Niepoprawne dane logowania'
+    }
   }
 }

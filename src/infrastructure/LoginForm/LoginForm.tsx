@@ -14,12 +14,14 @@ const LoginForm: FunctionComponent = () => {
 
 
   return (
+    <>
     <form className={styles.loginForm} action={formAction}>
-      {state?.message && <p>{state.message}</p>}
       <input name="email" placeholder="Email" required />
       <input name="password" placeholder="Hasło" type="password" required />
-      <button type="submit">Zaloguj się</button>
+      <button type="submit">Zaloguj</button>
     </form>
+    {state?.message && <div className={styles.error}>{state.message}</div>}
+    </>
   )
 }
 

@@ -8,6 +8,7 @@ const data: {
     name: string
     slug: string
     imageSrc: string
+    price: number
     description: string
     details: {
       general: {
@@ -59,6 +60,7 @@ const data: {
       slug: 'cannondale',
       imageSrc: '/images/bike/cannondale.png',
       description: 'Amerykańskie rowery szosowe',
+      price: 25000,
       details: {
         general: {
           brand: 'Cannondale',
@@ -106,6 +108,7 @@ const data: {
       name: 'Specialized',
       slug: 'specialized',
       imageSrc: '/images/bike/specialized.png',
+      price: 30000,
       description: 'Amerykańskie rowery szosowe',
       details: {
         general: {
@@ -153,6 +156,7 @@ const data: {
       id: 3,
       name: 'Trek',
       slug: 'trek',
+      price: 28000,
       imageSrc: '/images/bike/trek.png',
       description: 'Amerykańskie rowery szosowe',
       details: {
@@ -201,6 +205,7 @@ const data: {
       id: 4,
       name: 'Scott',
       slug: 'scott',
+      price: 32000,
       imageSrc: '/images/bike/scott.png',
       description: 'Szwajcarskie rowery szosowe',
       details: {
@@ -249,6 +254,7 @@ const data: {
       id: 5,
       name: 'Merida',
       slug: 'merida',
+      price: 27000,
       imageSrc: '/images/bike/merida.png',
       description: 'Tajwańskie rowery szosowe',
       details: {
@@ -297,6 +303,7 @@ const data: {
       id: 6,
       name: 'Kross',
       slug: 'kross',
+      price: 20000,
       imageSrc: '/images/bike/kross.png',
       description: 'Polskie rowery szosowe',
       details: {
@@ -345,6 +352,7 @@ const data: {
       id: 7,
       name: 'Cube',
       slug: 'cube',
+      price: 23000,
       imageSrc: '/images/bike/cube.png',
       description: 'Niemieckie rowery szosowe',
       details: {
@@ -393,6 +401,7 @@ const data: {
       id: 8,
       name: 'Giant',
       slug: 'giant',
+      price: 21000,
       imageSrc: '/images/bike/giant.png',
       description: 'Tajwańskie rowery szosowe',
       details: {
@@ -441,6 +450,7 @@ const data: {
       id: 9,
       name: 'Cervelo',
       slug: 'cervelo',
+      price: 35000,
       imageSrc: '/images/bike/cervelo.png',
       description: 'Kanadyjskie rowery szosowe',
       details: {
@@ -489,6 +499,7 @@ const data: {
       id: 10,
       name: 'Bianchi',
       slug: 'bianchi',
+      price: 29000,
       imageSrc: '/images/bike/bianchi.png',
       description: 'Włoskie rowery szosowe',
       details: {
@@ -537,6 +548,7 @@ const data: {
       id: 11,
       name: 'Pinarello',
       slug: 'pinarello',
+      price: 40000,
       imageSrc: '/images/bike/pinarello.png',
       description: 'Włoskie rowery szosowe',
       details: {
@@ -585,6 +597,7 @@ const data: {
       id: 12,
       name: 'Fuji',
       slug: 'fuji',
+      price: 24000,
       imageSrc: '/images/bike/fuji.png',
       description: 'Japońskie rowery szosowe',
       details: {

@@ -1,12 +1,12 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import styles from './login-form.module.sass'
+import styles from './register-form.module.sass'
 import { useFormState } from 'react-dom'
-import { handleLoginSubmit } from '@/app/login/actions'
+import { handleRegisterSubmit } from '@/app/register/actions'
 
-const LoginForm: FunctionComponent = () => {
-  const [state, formAction] = useFormState(handleLoginSubmit, {
+const RegisterForm: FunctionComponent = () => {
+  const [state, formAction] = useFormState(handleRegisterSubmit, {
     email: '',
     password: '',
     message: ''
@@ -15,15 +15,15 @@ const LoginForm: FunctionComponent = () => {
 
   return (
     <>
-    <form className={styles.loginForm} action={formAction}>
-      <input name="email" placeholder="Email" required />
-      <input name="password" placeholder="Hasło" type="password" required />
-      <button type="submit">Zaloguj się</button>
-    </form>
-    {state?.message && <div className={styles.error}>{state.message}</div>}
+      <form className={styles.registerForm} action={formAction}>
+        <input name="email" placeholder="Email" required/>
+        <input name="password" placeholder="Hasło" type="password" required/>
+        <button type="submit">Zarejestruj</button>
+      </form>
+      {state?.message && <div className={styles.error}>{state.message}</div>}
     </>
   )
 }
 
 
-export default LoginForm
+export default RegisterForm

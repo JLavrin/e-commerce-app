@@ -6,10 +6,10 @@ import styles from './login-footer.module.sass'
 const LoginFooter: FunctionComponent = () => (
   <div className={styles.loginFooter}>
     <p>
-      Nie pamiętasz hasła? <Link href="/login/forgot-password">zresetuj hasło</Link>
+      Nie pamiętasz hasła? <Link href="/forgot-password">zresetuj hasło</Link>
     </p>
     <p>
-      Nie masz konta? <Link href="/login/register">zarejestruj się</Link>
+      Nie masz konta? <Link href="/register">zarejestruj się</Link>
     </p>
   </div>
 )

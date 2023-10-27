@@ -11,7 +11,7 @@ const loginSchema = z.object({
   password: z.string().min(8)
 })
 
-export async function handleLoginSubmit(prevState: any, payload: any) {
+export async function handleRegisterSubmit(prevState: any, payload: any) {
   let parsed: {
     email: string
     password: string
@@ -23,16 +23,24 @@ export async function handleLoginSubmit(prevState: any, payload: any) {
       password: payload.get('password')
     })
   } catch (error) {
+    let message = ''
+    if (error instanceof z.ZodError) {
+      if (error.issues[0].code === 'invalid_string') {
+        message = 'Niepoprawny format email'
+      }
+
+      if (error.issues[0].code === 'too_small') {
+        message = 'Hasło musi mieć minimum 8 znaków'
+      }
+    }
 
     return {
       email: '',
       password: '',
-      message: 'Niepoprawne dane logowania'
+      message: message || 'Niepoprawnie wypełniony formularz, spróbuj ponownie'
     }
   }
 
-
-  let result = false
   let user: any
 
   try {
@@ -44,7 +52,11 @@ export async function handleLoginSubmit(prevState: any, payload: any) {
     })
 
     if (user) {
-      result = await bcrypt.compare(parsed.password, user?.password)
+      return {
+        email: '',
+        password: '',
+        message: 'Użytkownik o podanym adresie email już istnieje'
+      }
     } else {
       await db.insertOne({
         email: parsed.email,
@@ -56,19 +68,11 @@ export async function handleLoginSubmit(prevState: any, payload: any) {
     return {
       email: '',
       password: '',
-      message: 'Błąd serwera'
+      message: 'Błąd rejestracji użytkownika'
     }
   }
 
-  if (result) {
-    cookies().set('cart', JSON.stringify(user.cart))
-    cookies().set('user', parsed.email)
-    redirect('/sklep/rowery')
-  } else {
-    return {
-      email: '',
-      password: '',
-      message: 'Niepoprawne dane logowania'
-    }
-  }
+  cookies().set('user', parsed.email)
+  cookies().set('cart', JSON.stringify([]))
+  redirect('/sklep/rowery')
 }
