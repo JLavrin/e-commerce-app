@@ -63,6 +63,7 @@ const ProductPage = ({ params }: { params: { categoryId: string, product: string
               }}
             />
         </div>
+        {/*@ts-ignore*/}
         <form className={styles.addToCartSection} action={(e) =>  formAction({e, product, cart: cart, cartLength: state?.newCount || 0})}>
           <div className={styles.title}>
             <h2>{product.name}</h2>

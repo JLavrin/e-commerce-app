@@ -26,7 +26,7 @@ const CartPage = () => {
             </tr>
           </thead>
           <tbody>
-            {cart.map((el, index) => (
+            {cart.map((el: any, index: number) => (
               <tr key={el.id} className={styles.cartItem}>
                 <td>{index + 1}</td>
                 <Image
