@@ -2,56 +2,58 @@ export enum Category {
   Bike = 'rowery'
 }
 
-const data: {
-  [key in Category]: {
-    id: number
-    name: string
-    slug: string
-    imageSrc: string
-    price: number
-    description: string
-    details: {
-      general: {
-        brand: string
-        gender: string
-        color: string
-        weight: string
-      }
-      frame: {
-        size: string
-        material: string
-        fork: string
-        rearShock: string
-      }
-      drive: {
-        shifters: string
-        frontDerailleur: string
-        rearDerailleur: string
-        cassette: string
-        chain: string
-      }
-      brakes: {
-        brakes: string
-        brakeLevers: string
-      }
-      wheels: {
-        size: string
-        hubs: string
-        rims: string
-        spokes: string
-        tires: string
-      }
-      components: {
-        saddle: string
-        seatpost: string
-        handlebar: string
-        stem: string
-        headset: string
-        grips: string
-        pedals: string
-      }
+export type Product = {
+  id: number
+  name: string
+  slug: string
+  imageSrc: string
+  price: number
+  description: string
+  details: {
+    general: {
+      brand: string
+      gender: string
+      color: string
+      weight: string
     }
-  }[]
+    frame: {
+      size: string
+      material: string
+      fork: string
+      rearShock: string
+    }
+    drive: {
+      shifters: string
+      frontDerailleur: string
+      rearDerailleur: string
+      cassette: string
+      chain: string
+    }
+    brakes: {
+      brakes: string
+      brakeLevers: string
+    }
+    wheels: {
+      size: string
+      hubs: string
+      rims: string
+      spokes: string
+      tires: string
+    }
+    components: {
+      saddle: string
+      seatpost: string
+      handlebar: string
+      stem: string
+      headset: string
+      grips: string
+      pedals: string
+    }
+  }
+}
+
+const data: {
+  [key in Category]: Product[]
 } = {
   [Category.Bike]: [
     {

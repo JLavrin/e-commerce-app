@@ -1,12 +1,13 @@
 'use client'
 
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import CartIcon from '@/infrastructure/icons/CartIcon'
 import UserIcon from '@/infrastructure/icons/UserIcon'
 
 import styles from './user-not-logged-in.module.sass'
 import { usePathname } from 'next/navigation'
+import useCartStore from '@/store/useCartStore'
 
 type Props = {
   isLoginPage: boolean
@@ -20,6 +21,7 @@ const UserNotLoggedIn: FunctionComponent<Props> = ({ isLoginPage, client }) => {
   const [isUserOpened, setIsUserOpened] = useState(false)
   const [isCartOpened, setIsCartOpened] = useState(false)
   const pathname = usePathname()
+  const { cartLength } = useCartStore()
 
   const handleCartClick = () => {
     setIsCartOpened(!isCartOpened)
@@ -48,9 +50,10 @@ const UserNotLoggedIn: FunctionComponent<Props> = ({ isLoginPage, client }) => {
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <Link className={styles.wrapper} href="/koszyk">
         <CartIcon/>
-      </div>
+        {cartLength > 0 && <div className={styles.cartCount}>{cartLength}</div>}
+      </Link>
       <div className={styles.wrapper} onClick={handleUserClick}>
         <UserIcon/>
         <div className={`${styles.userPopper} ${!isUserOpened && styles.closed}`}>

@@ -1,12 +1,41 @@
+'use client'
+
 import Image from 'next/image'
 import data, { Category } from '@/app/sklep/[categoryId]/data'
 import styles from './product.module.sass'
 import Link from 'next/link'
+import { useFormState } from 'react-dom'
+import { handleAddToCart } from '@/app/sklep/actions'
+import { useEffect } from 'react'
+import useCartStore from '@/store/useCartStore'
 
 const ProductPage = ({ params }: { params: { categoryId: string, product: string } }) => {
   const product = data[params.categoryId as Category].find((element) => element.slug === params.product)!
+  const [state, formAction] = useFormState(handleAddToCart, {
+    newCount: 0,
+    message: '',
+    cart: []
+  })
+  const {
+    cart,
+    updateCart,
+    setCartLength
+  } = useCartStore()
+
+
+
+  useEffect(() => {
+    if (state?.cart && state?.cart.length > 0) {
+      if (cart.length !== state?.cart.length) {
+        setCartLength(state.cart.length)
+        updateCart(state.cart)
+      }
+    }
+  }, [state?.cart.length, updateCart])
 
   return (
+    <>
+    {state?.message && <div className={styles.info}>{state.message}</div>}
     <div className={styles.pageWrapper}>
       <div className={styles.titleWrapper}>
         <div className={styles.breadcrumbs}>
@@ -34,7 +63,7 @@ const ProductPage = ({ params }: { params: { categoryId: string, product: string
               }}
             />
         </div>
-        <form className={styles.addToCartSection}>
+        <form className={styles.addToCartSection} action={(e) =>  formAction({e, product, cart: cart, cartLength: state?.newCount || 0})}>
           <div className={styles.title}>
             <h2>{product.name}</h2>
           </div>
@@ -46,7 +75,7 @@ const ProductPage = ({ params }: { params: { categoryId: string, product: string
           </div>
           <div className={styles.quantity}>
             <p><span>Ilość</span></p>
-            <select className={styles.quantitySelect}>
+            <select name="quantity" className={styles.quantitySelect}>
               <option value="1" selected>1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -54,7 +83,7 @@ const ProductPage = ({ params }: { params: { categoryId: string, product: string
           </div>
           <div className={styles.size}>
             <p><span>Rozmiar</span></p>
-            <select className={styles.sizeSelect}>
+            <select name="size" className={styles.sizeSelect}>
               <option value="S">S</option>
               <option value="M">M</option>
               <option value="L" selected>L</option>
@@ -100,6 +129,7 @@ const ProductPage = ({ params }: { params: { categoryId: string, product: string
         <p>Pedały <span>{product.details.components.pedals}</span></p>
       </div>
     </div>
+    </>
   )
 }
 
